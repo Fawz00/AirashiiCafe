@@ -5,6 +5,8 @@ using UnityEngine.UIElements;
 
 public class GameManager : Singleton<GameManager>
 {
+    [SerializeField] public bool isLocalDebug = false;
+
     [SerializeField] public PlayerControllerBase playerControllerBase;
     [SerializeField] public PlayerData_SO playerData;
     public UIStack CurrentUIStack => UIManager.Instance.CurrentUI;
@@ -27,6 +29,6 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
-        LevelManager.LoadSubLevel(Common.gameScene);
+        if(!isLocalDebug) LevelManager.LoadSubLevel(Common.gameScene);
     }
 }

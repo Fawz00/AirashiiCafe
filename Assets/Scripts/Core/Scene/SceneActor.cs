@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class SceneActor : MonoBehaviour
 {
     [SerializeField] public Common.PlayerControlType playerControlType = Common.PlayerControlType.UIOnly;
+    [SerializeField] private bool disableForceRedirectToStartupScene = false;
 
     public GameObject player;
     void Awake()
@@ -11,7 +12,7 @@ public class SceneActor : MonoBehaviour
         if (GameManager.Instance == null)
         {
             Debug.LogWarning("GameManager instance is null. Reverting to parent level scene.");
-            LevelManager.GlobalResetAndLoad(Common.startupScene);
+            if(!disableForceRedirectToStartupScene) LevelManager.GlobalResetAndLoad(Common.startupScene);
             return;
         }
         if (player == null)
