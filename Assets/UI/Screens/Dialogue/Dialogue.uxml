@@ -1,0 +1,21 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Screens/Dialogue/Dialogue%20Style.uss?fileID=7433441132597879392&amp;guid=36f2bb513d57c9e4a9b3dff61292c5d1&amp;type=3#Dialogue Style" />
+    <engine:VisualElement name="root" style="flex-grow: 1; justify-content: flex-end;">
+        <engine:VisualElement name="background" style="flex-grow: 1;">
+            <engine:VisualElement style="flex-grow: 1; width: 30%; align-self: flex-end; justify-content: space-around;">
+                <engine:ListView name="dialogue-list" item-template="project://database/Assets/UI/Screens/Dialogue/components/button.uxml?fileID=9197481963319205126&amp;guid=c3d7ec9d86e517b429c29ffa61be2816&amp;type=3#button" enabled="true" virtualization-method="DynamicHeight" reorder-mode="Animated" style="justify-content: space-around; align-items: flex-start; align-self: stretch;" />
+            </engine:VisualElement>
+            <engine:VisualElement style="flex-grow: 0; height: 26%; padding-top: 4px; background-color: rgba(0, 153, 255, 0.69); border-top-color: rgb(0, 153, 255); border-top-width: 6px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px; margin-top: 0; margin-right: 60px; margin-bottom: 20px; margin-left: 60px; border-left-color: rgb(0, 153, 255); border-right-color: rgb(0, 153, 255); border-bottom-color: rgb(0, 153, 255); border-right-width: 6px; border-bottom-width: 6px; border-left-width: 6px; border-top-left-radius: 50px; border-top-right-radius: 50px;">
+                <engine:Label text="Name" name="text-name" style="font-size: 42px; -unity-text-align: upper-center; -unity-font-style: bold; height: 62px;" />
+                <engine:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgba(255, 255, 255, 0.43); padding-bottom: 8px; padding-top: 8px; padding-right: 8px; padding-left: 8px; justify-content: space-between;">
+                    <engine:Label text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit." name="text-dialogue" style="font-size: 32px; white-space: normal;" />
+                    <engine:VisualElement style="flex-grow: 0; justify-content: flex-end; align-items: center;">
+                        <engine:Button text="&gt;" name="continue-button" style="-unity-font-style: bold; font-size: 20px; padding-top: 6px; padding-right: 6px; padding-bottom: 6px; padding-left: 6px; margin-top: 2px; margin-right: 2px; margin-bottom: 2px; margin-left: 2px; flex-shrink: 1; width: 64px; height: 64px; border-top-left-radius: 32px; border-top-right-radius: 32px; border-bottom-right-radius: 32px; border-bottom-left-radius: 32px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; background-color: rgba(55, 151, 248, 0.66);" />
+                    </engine:VisualElement>
+                </engine:VisualElement>
+                <engine:VisualElement name="face-left" style="flex-grow: 1; position: absolute; top: -250px; left: 0; width: 300px; height: 300px;" />
+                <engine:VisualElement name="face-right" style="flex-grow: 1; position: absolute; width: 300px; height: 300px; right: 0; top: -250px;" />
+            </engine:VisualElement>
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

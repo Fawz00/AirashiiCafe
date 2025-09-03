@@ -95,7 +95,7 @@ public class UIManager : Singleton<UIManager>
             Debug.LogError("UI is null");
         }
     }
-    public void BackUI(bool shouldAskQuitIfStackEmpty = false, int backStep = 1)
+    public void BackUI(bool shouldPauseIfStackEmpty = false, int backStep = 1)
     {
         if (uiStack.Count > 1)
         {
@@ -114,7 +114,14 @@ public class UIManager : Singleton<UIManager>
                             // cast to UIScript to call OnClose if needed
                             if (component is UIScript uiScript)
                             {
-                                uiScript.OnClose();
+                                if (!uiScript.IsAlreadyClosed)
+                                {
+                                    uiScript.OnClose();
+                                }
+                                else
+                                {
+                                    Debug.LogWarning($"UIScript '{handlerType.FullName}' has already been closed.");
+                                }
                             }
                             Destroy(component);
                         }
@@ -131,7 +138,7 @@ public class UIManager : Singleton<UIManager>
         }
         else
         {
-            if (shouldAskQuitIfStackEmpty)
+            if (shouldPauseIfStackEmpty)
             {
                 // Pause the app
                 AddUI(pauseUi);

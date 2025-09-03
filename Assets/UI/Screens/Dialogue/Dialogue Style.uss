@@ -1,0 +1,17 @@
+.unity-list-view__item {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.unity-list-view__item:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.unity-list-view__item:active {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+.unity-list-view__item:focus {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+.unity-list-view__item:selected {
+    background-color: rgba(0, 0, 0, 0.9);
+}

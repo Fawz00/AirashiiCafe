@@ -1,0 +1,6 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Screens/Dialogue/components/Button%20Style.uss?fileID=7433441132597879392&amp;guid=a8561a422897db248857226f10e65c5f&amp;type=3#Button Style" />
+    <engine:VisualElement name="item-root" style="flex-grow: 1; margin-top: 10px; margin-bottom: 10px; width: 480px;">
+        <engine:Button text="Text" name="button" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px; background-color: rgba(255, 255, 255, 0.78); border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px; border-left-color: rgb(0, 150, 255); border-right-color: rgb(0, 150, 255); border-top-color: rgb(0, 150, 255); border-bottom-color: rgb(0, 150, 255); font-size: 24px; flex-shrink: 1; height: auto; width: auto; flex-grow: 1; border-bottom-left-radius: 16px; border-top-left-radius: 16px; -unity-font-style: normal;" />
+    </engine:VisualElement>
+</engine:UXML>

@@ -1,0 +1,17 @@
+using UnityEngine;
+
+public class Debug_UiViewerTest : MonoBehaviour
+{
+    [SerializeField] private UIAsset UiToShow;
+
+    void Awake()
+    {
+        
+    }
+    
+    [Button("View UI", onlyInPlayMode: true)]
+    void TestButton()
+    {
+        if(UiToShow != null) UI_Manager.Instance.AddUI(UiToShow, false, true);
+    }
+}
