@@ -1,0 +1,10 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Screens/MainMenu/MainMenu%20Style.uss?fileID=7433441132597879392&amp;guid=d899081c38a69dc4593a398d79f78727&amp;type=3#MainMenu Style" />
+    <engine:VisualElement name="root" style="flex-grow: 1; background-color: rgb(0, 0, 192);">
+        <engine:Label text="&#10;Welcome To 愛らしいカフェー InDev&#10;===============================&#10;&#10;Last updated 20250903" style="color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/Fonts/CourierPrime-Regular.ttf?fileID=12800000&amp;guid=8e3c3638fb3d2df4fac8ab4ae1c5ad76&amp;type=3#CourierPrime-Regular&quot;); font-size: 45px; -unity-font-style: normal;" />
+        <engine:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: center;">
+            <engine:Button text="[EXIT]" name="quitButton" class="terminal_button" style="margin-right: 12px;" />
+            <engine:Button text="[PLAY]" name="playButton" class="terminal_button" style="margin-left: 12px;" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

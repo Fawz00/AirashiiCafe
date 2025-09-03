@@ -1,0 +1,4 @@
+.basic-button {
+    font-size: 45px;
+    -unity-font-definition: url("project://database/Assets/Fonts/CourierPrime-Regular.ttf?fileID=12800000&guid=8e3c3638fb3d2df4fac8ab4ae1c5ad76&type=3#CourierPrime-Regular");
+}

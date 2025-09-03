@@ -1,0 +1,9 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Screens/Pause%20Menu/PauseMenu%20Style.uss?fileID=7433441132597879392&amp;guid=a01a48317455eda4da594baec19c7e7d&amp;type=3#PauseMenu Style" />
+    <engine:VisualElement name="root" style="flex-grow: 1; justify-content: center; background-color: rgba(0, 0, 0, 0.39);">
+        <engine:VisualElement style="flex-grow: 0; align-self: center; padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px; background-color: rgba(255, 255, 255, 0.43);">
+            <engine:Label text="PAUSED" style="font-size: 70px;" />
+            <engine:Button text="CONTINUE" name="resumeButton" class="basic-button" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

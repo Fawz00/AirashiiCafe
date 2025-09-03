@@ -1,0 +1,19 @@
+.terminal_button {
+    align-self: center;
+    background-color: rgba(0, 0, 0, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    font-size: 45px;
+    -unity-font-definition: url("project://database/Assets/Fonts/CourierPrime-Regular.ttf?fileID=12800000&guid=8e3c3638fb3d2df4fac8ab4ae1c5ad76&type=3#CourierPrime-Regular");
+    color: rgb(255, 255, 255);
+    padding-top: 8px;
+    padding-right: 8px;
+    padding-bottom: 8px;
+    padding-left: 8px;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+}
