@@ -21,7 +21,7 @@ public class UIManager : Singleton<UIManager>
         base.Awake();
 
         if(pauseUi == null) pauseUi = GetUiFromResource("pause_menu");
-        if(popupUi == null) popupUi = GetUiFromResource("popup_dialog");
+        // if(popupUi == null) popupUi = GetUiFromResource("popup_dialog");
         if(HUDUi == null) HUDUi = GetUiFromResource("hud_ui");
     }
     private void Start()
