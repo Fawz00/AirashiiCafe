@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManagerCust : MonoBehaviour
 {
     [Header("Spawn Settings")]
     public GameObject customerPrefab;
@@ -78,6 +78,4 @@ public class GameManager : MonoBehaviour
         currentCustomers--;
     }
 }
-
-
 
