@@ -2,19 +2,24 @@ using UnityEngine;
 
 public class GameManagerCust : MonoBehaviour
 {
-    [Header("Spawn Settings")]
+    [Header("Spawn Settings (Wajib)")]
     public GameObject customerPrefab;
     public Transform[] spawnPoints;
+
+    [Header("Table Settings (Wajib)")]
     public Table[] tables;
 
+    [Header("Exit Settings")]
+    public Transform exitPoint; // pintu keluar wajib
+
     [Tooltip("Interval spawn dalam detik")]
-    public float spawnInterval = 10f; // default 10 detik
+    public float spawnInterval = 10f;
     private float spawnTimer = 0f;
 
     [Header("Limit Customer (Opsional)")]
-    public bool limitCustomer = true;   // kalau true, batasi jumlah customer
-    public int maxCustomers = 2;        // batas maksimal customer aktif
-    private int currentCustomers = 0;   // counter customer aktif
+    public bool limitCustomer = true;
+    public int maxCustomers = 2;
+    private int currentCustomers = 0;
 
     void Update()
     {
@@ -29,7 +34,6 @@ public class GameManagerCust : MonoBehaviour
 
     void TrySpawnCustomer()
     {
-        // cek apakah batas customer aktif sudah tercapai
         if (limitCustomer && currentCustomers >= maxCustomers)
         {
             Debug.Log("Batas customer tercapai, tidak spawn baru.");
@@ -41,33 +45,28 @@ public class GameManagerCust : MonoBehaviour
 
     void SpawnCustomer()
     {
-        // pilih spawn point random
         Transform point = spawnPoints[Random.Range(0, spawnPoints.Length)];
-
-        // buat customer di pintu
         GameObject newCustomer = Instantiate(customerPrefab, point.position, Quaternion.identity);
 
-        // tambahkan counter
         currentCustomers++;
 
-        // daftarkan ke script Customer supaya pas pergi counter berkurang
         Customer cust = newCustomer.GetComponent<Customer>();
         if (cust != null)
         {
-            cust.OnCustomerLeave += HandleCustomerLeave;
-        }
+            cust.exitPoint = exitPoint; // wajib diisi
 
-        // cari meja kosong
-        foreach (Table table in tables)
-        {
-            if (table.HasEmptySeat())
+            cust.OnCustomerLeave += HandleCustomerLeave;
+
+            foreach (Table table in tables)
             {
-                cust.SitAtTable(table);
-                return;
+                if (table.HasEmptySeat())
+                {
+                    cust.SitAtTable(table);
+                    return;
+                }
             }
         }
 
-        // kalau semua penuh, customer pergi lagi
         Debug.Log("Semua meja penuh, customer tidak duduk.");
         Destroy(newCustomer, 1f);
         currentCustomers--;
@@ -78,4 +77,3 @@ public class GameManagerCust : MonoBehaviour
         currentCustomers--;
     }
 }
-
