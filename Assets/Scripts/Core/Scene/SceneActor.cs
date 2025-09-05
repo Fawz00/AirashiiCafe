@@ -25,7 +25,10 @@ public class SceneActor : MonoBehaviour
                 return;
             }
         }
+    }
 
+    void Start()
+    {
         // Set the player control type
         switch (playerControlType)
         {
@@ -43,10 +46,7 @@ public class SceneActor : MonoBehaviour
                 GameManager.Instance.playerControllerBase.SetPlayerControlType(Common.PlayerControlType.All);
                 break;
         }
-    }
-
-    void Start()
-    {
+        
         // UI_Manager.Instance.AddUI(UI_Manager.Instance.GetUiFromResource("AktivitasSiswa/as_ar_scanner_page"), false, true, true);
     }
 

@@ -14,6 +14,24 @@ public class Common
         None, // No player control
     }
 
+    public enum Rarity
+    {
+        Common,
+        Uncommon,
+        Rare,
+        Epic,
+        Legendary,
+        Mythic,
+    }
+
+    public enum ItemType
+    {
+        Generic,
+        Meal,
+        Beverage,
+        OtherConsumable,
+    }
+
     public static T GetScriptableObjectFromResource<T>(string path_to_id) where T : ScriptableObject
     {
         T data = Resources.Load<T>(path_to_id);
