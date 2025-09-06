@@ -9,8 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c550aa8b3cea43940827642fc6287963, type: 3}
-  m_Name: player_data
+  m_Script: {fileID: 11500000, guid: ca97346ff4447684faed587a95f41c3d, type: 3}
+  m_Name: coin
   m_EditorClassIdentifier: 
-  inventory: {fileID: 11400000, guid: ed959047c082cc346abbfd3086ab9d9e, type: 2}
-  day: 0
+  name: Coin
+  typeId: coin
+  description: In another world, humans call it 'money'.
+  icon: {fileID: 0}
+  rarity: 1
+  isStackable: 1

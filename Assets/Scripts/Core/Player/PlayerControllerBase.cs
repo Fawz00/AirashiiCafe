@@ -5,7 +5,7 @@ public class PlayerControllerBase : MonoBehaviour
 {
     [Header("Player Control Settings")]
     [SerializeField] public bool allowControl = true;
-    [NonSerialized] public GameplayController arController;
+    [NonSerialized] public GameplayController gameplayController;
 
     private InputSystem_Actions inputActions;
 
@@ -16,13 +16,13 @@ public class PlayerControllerBase : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         
         inputActions = new InputSystem_Actions();
-        arController = GetComponent<GameplayController>();
-        if (arController == null)
+        gameplayController = GetComponent<GameplayController>();
+        if (gameplayController == null)
         {
             Debug.LogWarning("ARController component not found on the GameObject.");
         }
 
-        arController.allowControl = false;
+        gameplayController.allowControl = false;
     }
 
     private void OnEnable()
@@ -41,10 +41,10 @@ public class PlayerControllerBase : MonoBehaviour
         switch (controlType)
         {
             case Common.PlayerControlType.GameOnly:
-                arController.allowControl = true;
+                gameplayController.allowControl = true;
                 break;
             case Common.PlayerControlType.UIOnly:
-                arController.allowControl = false;
+                gameplayController.allowControl = false;
                 break;
             case Common.PlayerControlType.Dynamic:
                 {
@@ -61,10 +61,10 @@ public class PlayerControllerBase : MonoBehaviour
                     break;
                 }
             case Common.PlayerControlType.All:
-                arController.allowControl = true;
+                gameplayController.allowControl = true;
                 break;
             case Common.PlayerControlType.None:
-                arController.allowControl = false;
+                gameplayController.allowControl = false;
                 break;
         }
     }

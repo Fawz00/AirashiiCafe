@@ -9,10 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 283f1be02e8e4424aa9f5fceb155106f, type: 3}
-  m_Name: hud_ui
+  m_Script: {fileID: 11500000, guid: 2530a8a8dd2c1754fb7d08a79018b8da, type: 3}
+  m_Name: Inventory
   m_EditorClassIdentifier: 
-  uiIdentifier: hud_ui
-  uiAsset: {fileID: 9197481963319205126, guid: 7b0c9bf51b1e2234dac243665dca9a34, type: 3}
-  handlerScript: {fileID: 0}
-  handlerClassName: 
