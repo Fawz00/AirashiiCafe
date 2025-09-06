@@ -14,6 +14,12 @@ public class PathFindNode : MonoBehaviour
         onTouchingThis?.Invoke(collision.gameObject); // Invoke the event when another collider enters this node's collider
     }
 
+    public IEnumerable<GameObject> GetNeighbors()
+    {
+        foreach (var n in next) yield return n;
+        foreach (var p in previous) yield return p;
+    }
+
     // Draw lines to next and previous nodes in the editor for visualization
     private void OnDrawGizmos()
     {

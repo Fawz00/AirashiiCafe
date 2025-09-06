@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class NPCController : MonoBehaviour
 {
-    [SerializeField] private GameObject model;
+    [SerializeField] private Animator animator;
     [SerializeField] private bool lockDirection = true;
     public Vector2 movement = Vector2.zero;
     public Vector2 direction = Vector2.right;
@@ -11,12 +11,10 @@ public class NPCController : MonoBehaviour
     private int spriteDirection = 0;
     private Vector2 lastDirection;
     private Rigidbody2D rb;
-    private Animator animator;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = model.GetComponent<Animator>();
     }
 
     private void Update()

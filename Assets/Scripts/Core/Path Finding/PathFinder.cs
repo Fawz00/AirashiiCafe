@@ -37,7 +37,7 @@ public class PathFinder : MonoBehaviour
             var nodeComp = current.GetComponent<PathFindNode>();
             if (nodeComp == null) continue;
 
-            foreach (var neighbor in nodeComp.next)
+            foreach (var neighbor in nodeComp.GetNeighbors())
             {
                 if (visited.Contains(neighbor)) continue;
 
@@ -71,8 +71,13 @@ public class PathFinder : MonoBehaviour
             var nodeComp = current.GetComponent<PathFindNode>();
             if (nodeComp == null) continue;
 
-            foreach (var neighbor in nodeComp.next)
+            foreach (var neighbor in nodeComp.GetNeighbors())
             {
+                if (neighbor == null)
+                {
+                    Debug.LogWarning("PathFinder: Neighbor node is null, skipping.");
+                    continue;
+                }
                 float tentativeG = gScore[current] + Vector3.Distance(current.transform.position, neighbor.transform.position);
 
                 if (!gScore.ContainsKey(neighbor) || tentativeG < gScore[neighbor])

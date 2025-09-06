@@ -1,5 +1,5 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <engine:VisualElement name="root" style="flex-grow: 1;">
+    <engine:VisualElement name="root" picking-mode="Ignore" style="flex-grow: 1;">
         <engine:Label text="InDev [20250905] - HUD Restaurant" style="font-size: 20px; -unity-font-style: bold; position: absolute; bottom: 0;" />
         <engine:VisualElement style="flex-grow: 1; top: 0; left: 0; position: absolute;">
             <engine:VisualElement name="ProgressPanel" style="flex-grow: 1; flex-shrink: 1; position: relative; width: 503px; height: auto; flex-direction: row; align-items: center; margin-top: 8px; margin-right: 8px; margin-bottom: 8px; margin-left: 8px;">

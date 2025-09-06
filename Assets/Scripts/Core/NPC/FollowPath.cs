@@ -11,7 +11,7 @@ public class FollowPath : MonoBehaviour
     public float nodeReachThreshold = 0.1f;
     public GameObject startNode;
     public GameObject endNode;
-    public bool autoFindStartNode = false;
+    public bool autoFindStartNode = true;
     public float FindStartRange = 10f;
 
     [Header("Movement Settings")]
@@ -30,11 +30,6 @@ public class FollowPath : MonoBehaviour
 
     private void Start()
     {
-        if (autoFindStartNode)
-        {
-            startNode = FindClosestNode();
-        }
-
         if (endNode != null)
         {
             FindNewPath();
@@ -44,7 +39,9 @@ public class FollowPath : MonoBehaviour
     private void Update()
     {
         if (currentPath.Count == 0 || endNode == null)
+        {
             return;
+        }
 
         var targetNode = currentPath[currentIndex];
         var direction = targetNode.transform.position - transform.position;
@@ -55,6 +52,7 @@ public class FollowPath : MonoBehaviour
             currentIndex++;
             if (currentIndex >= currentPath.Count)
             {
+                // Reached the end of the path
                 currentPath.Clear();
                 npcController.movement = Vector2.zero;
                 return;
@@ -63,15 +61,32 @@ public class FollowPath : MonoBehaviour
             direction = targetNode.transform.position - transform.position;
         }
 
+        Debug.DrawLine(transform.position, targetNode.transform.position, Color.black);
         npcController.movement = direction.normalized * speed;
     }
 
+    [Button("Find New Path")]
     public void FindNewPath()
     {
-        if (startNode == null || endNode == null) return;
+        if (autoFindStartNode)
+        {
+            startNode = FindClosestNode();
+        }
 
+        if (startNode == null || endNode == null)
+        {
+            Debug.LogWarning("FollowPath: StartNode or EndNode is not set or found.");
+            return;
+        }
+
+        currentPath.Clear();
         currentPath = pathFinder.FindPath(startNode, endNode);
         currentIndex = (currentPath.Count > 0) ? 0 : -1;
+
+        if (currentPath.Count == 0 || endNode == null)
+        {
+            Debug.LogWarning($"FollowPath: No path found from StartNode to EndNode. Path count: {currentPath.Count}, start Node: {startNode}, endNode: {endNode}");
+        }
     }
 
     private GameObject FindClosestNode()
