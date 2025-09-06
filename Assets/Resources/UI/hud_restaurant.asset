@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 283f1be02e8e4424aa9f5fceb155106f, type: 3}
-  m_Name: hud_ui
+  m_Name: hud_restaurant
   m_EditorClassIdentifier: 
   uiIdentifier: hud_ui
   uiAsset: {fileID: 9197481963319205126, guid: 7b0c9bf51b1e2234dac243665dca9a34, type: 3}
-  handlerScript: {fileID: 0}
-  handlerClassName: 
+  handlerScript: {fileID: 11500000, guid: 3493656d04d0e9a44a8c18fc075b157e, type: 3}
+  handlerClassName: UI_HUDRestaurant

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c550aa8b3cea43940827642fc6287963, type: 3}
   m_Name: player_data
   m_EditorClassIdentifier: 
-  currentScene: BOOTSTRAP
-  coins: 0
+  inventory: {fileID: 11400000, guid: ed959047c082cc346abbfd3086ab9d9e, type: 2}
+  day: 0

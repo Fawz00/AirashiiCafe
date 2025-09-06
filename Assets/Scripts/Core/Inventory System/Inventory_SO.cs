@@ -54,6 +54,12 @@ public class Inventory_SO : ScriptableObject
         return !EqualityComparer<InventoryItem>.Default.Equals(existing, default) ? existing.quantity : 0;
     }
 
+    public int GetItemQuantity(string itemTypeId)
+    {
+        var existing = items.Find(i => i.item.typeId == itemTypeId);
+        return !EqualityComparer<InventoryItem>.Default.Equals(existing, default) ? existing.quantity : 0;
+    }
+
     public List<(BaseItem_SO item, int quantity)> GetAllItems()
     {
         var itemList = new List<(BaseItem_SO item, int quantity)>();
@@ -62,5 +68,15 @@ public class Inventory_SO : ScriptableObject
             itemList.Add((invItem.item, invItem.quantity));
         }
         return itemList;
+    }
+
+    public List<string> getAllItemTypeIds()
+    {
+        List<string> itemIds = new List<string>();
+        foreach (var invItem in items)
+        {
+            itemIds.Add(invItem.item.typeId);
+        }
+        return itemIds;
     }
 }
