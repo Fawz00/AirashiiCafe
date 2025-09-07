@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(PathFinder))]
 [RequireComponent(typeof(Collider2D))]
@@ -7,6 +8,9 @@ using UnityEngine;
 [RequireComponent(typeof(NPCController))]
 public class FollowPath : MonoBehaviour
 {
+    [Header("Path Events")]
+    public UnityEvent<GameObject, GameObject> onPathCompleted; // Event triggered when the path is completed, passing start and end nodes
+
     [Header("Path Following Settings")]
     public float nodeReachThreshold = 0.1f;
     public GameObject startNode;
@@ -53,6 +57,8 @@ public class FollowPath : MonoBehaviour
             if (currentIndex >= currentPath.Count)
             {
                 // Reached the end of the path
+                onPathCompleted?.Invoke(startNode, endNode);
+
                 currentPath.Clear();
                 npcController.movement = Vector2.zero;
                 return;
@@ -70,7 +76,7 @@ public class FollowPath : MonoBehaviour
     {
         if (autoFindStartNode)
         {
-            startNode = FindClosestNode();
+            startNode = FindClosestNode().gameObject;
         }
 
         if (startNode == null || endNode == null)
@@ -89,10 +95,10 @@ public class FollowPath : MonoBehaviour
         }
     }
 
-    private GameObject FindClosestNode()
+    public PathFindNode FindClosestNode()
     {
         float minDist = float.MaxValue;
-        GameObject closest = null;
+        PathFindNode closest = null;
 
         // Find the closest node within the FindStartRange range
         var allNodes = GameObject.FindObjectsByType<PathFindNode>(FindObjectsSortMode.None);
@@ -102,7 +108,7 @@ public class FollowPath : MonoBehaviour
             if (dist < minDist && dist <= FindStartRange)
             {
                 minDist = dist;
-                closest = node.gameObject;
+                closest = node;
             }
         }
         return closest;

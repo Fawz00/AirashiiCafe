@@ -1,3 +1,5 @@
+using System;
+using Core.Events;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -30,10 +32,18 @@ public class UI_HUDRestaurant : UIScript
     void OnEnable()
     {
         pauseButton.clicked += OnPauseButtonClicked;
+        EventBus.Subscribe<Event_OnInventoryUpdated>(OnInventoryUpdated);
     }
+
     void OnDisable()
     {
         pauseButton.clicked -= OnPauseButtonClicked;
+        EventBus.Unsubscribe<Event_OnInventoryUpdated>(OnInventoryUpdated);
+    }
+
+    private void OnInventoryUpdated(Event_OnInventoryUpdated updated)
+    {
+        coins.text = GameManager.Instance.playerData.inventory.GetItemQuantity("coin").ToString();
     }
 
     void LateUpdate()

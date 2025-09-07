@@ -8,14 +8,35 @@ public class PathFinder : MonoBehaviour
 
     public List<GameObject> FindPath(GameObject startNode, GameObject endNode)
     {
+        var endComp = endNode.GetComponent<PathFindNode>();
+
+        // Jika endNode bukan node graph, cari node graf terdekat
+        GameObject actualEnd = endNode;
+        bool appendEndLater = false;
+
+        if (endComp == null)
+        {
+            actualEnd = FindClosestNode(endNode);
+            appendEndLater = true;
+        }
+
+        List<GameObject> path;
         if (efficientMode)
         {
-            return FindEfficientPath(startNode, endNode); // pakai Dijkstra
+            path = FindEfficientPath(startNode, actualEnd);
         }
         else
         {
-            return FindBlindPath(startNode, endNode); // pakai BFS
+            path = FindBlindPath(startNode, actualEnd);
         }
+
+        // Tambahkan target asli kalau bukan PathFindNode
+        if (appendEndLater && path.Count > 0)
+        {
+            path.Add(endNode);
+        }
+
+        return path;
     }
 
     // ========== MODE 1: BFS (jumlah langkah paling sedikit) ==========
@@ -119,5 +140,25 @@ public class PathFinder : MonoBehaviour
             totalPath.Insert(0, current);
         }
         return totalPath;
+    }
+
+    // ========== Find closest node to a target (dipakai di FollowPath) ==========
+    private GameObject FindClosestNode(GameObject target)
+    {
+        var allNodes = FindObjectsByType<PathFindNode>(FindObjectsSortMode.None);
+        GameObject closest = null;
+        float minDist = float.MaxValue;
+
+        foreach (var node in allNodes)
+        {
+            float dist = Vector3.Distance(target.transform.position, node.transform.position);
+            if (dist < minDist)
+            {
+                minDist = dist;
+                closest = node.gameObject;
+            }
+        }
+
+        return closest;
     }
 }

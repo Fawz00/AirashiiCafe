@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiIdentifier: customer_bubble
   uiAsset: {fileID: 9197481963319205126, guid: a60e8e8efc30d814a9016c84afd87bed, type: 3}
-  handlerScript: {fileID: 0}
-  handlerClassName: 
+  handlerScript: {fileID: 11500000, guid: 946c0bd44ea77fc47b99e1c81cc09004, type: 3}
+  handlerClassName: UI_CustomerBubble

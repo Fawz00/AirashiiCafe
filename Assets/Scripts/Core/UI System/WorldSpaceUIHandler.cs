@@ -40,16 +40,27 @@ public class WorldSpaceUIHandler : MonoBehaviour
         {
             uiDocument.visualTreeAsset = uiAsset.uiAsset;
 
-            if (uiAsset.handlerClassName != null && uiAsset.handlerClassName != "")
+            if (!string.IsNullOrEmpty(uiAsset.handlerClassName))
             {
                 var handlerType = System.Type.GetType(uiAsset.handlerClassName);
+                if (handlerType == null)
+                {
+                    // Try to find the type in all loaded assemblies
+                    foreach (var assembly in System.AppDomain.CurrentDomain.GetAssemblies())
+                    {
+                        handlerType = assembly.GetType(uiAsset.handlerClassName);
+                        if (handlerType != null)
+                            break;
+                    }
+                }
+
                 if (handlerType != null)
                 {
                     uiDocument.gameObject.AddComponent(handlerType);
                 }
                 else
                 {
-                    Debug.LogError($"Handler class '{uiAsset.handlerClassName}' not found.");
+                    Debug.LogError($"Handler class '{uiAsset.handlerClassName}' not found in any loaded assembly.");
                 }
             }
         }

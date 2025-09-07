@@ -46,3 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entrance: {fileID: 0}
   tableSets: []
+  menuItems:
+  - {fileID: 11400000, guid: 13860518e6c21e64db811b26e491a861, type: 2}

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Core.Events;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Inventory System/Inventory")]
@@ -25,11 +26,13 @@ public class Inventory_SO : ScriptableObject
             if (!EqualityComparer<InventoryItem>.Default.Equals(existing, default))
             {
                 existing.quantity += quantity;
+                EventBus.Publish(new Event_OnInventoryUpdated(Common.UpdateType.Set));
                 return;
             }
         }
 
         items.Add(new InventoryItem(item, quantity));
+        EventBus.Publish(new Event_OnInventoryUpdated(Common.UpdateType.Add));
     }
 
     public void RemoveItem(BaseItem_SO item, int quantity = 1)
@@ -44,7 +47,11 @@ public class Inventory_SO : ScriptableObject
                     Debug.LogWarning($"Removed more items than available.");
 
                 items.Remove(existing);
+                EventBus.Publish(new Event_OnInventoryUpdated(Common.UpdateType.Remove));
+                return;
             }
+
+            EventBus.Publish(new Event_OnInventoryUpdated(Common.UpdateType.Set));
         }
     }
 

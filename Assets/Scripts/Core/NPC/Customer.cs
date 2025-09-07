@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(NPCController))]
 [RequireComponent(typeof(FollowPath))]
@@ -9,17 +10,20 @@ public class Customer : MonoBehaviour
 
     [Header("Customer Settings")]
     public string customerName = "Customer";
-    public int patience = 100; // How long the customer is willing to wait
-    [Range(5, 12)] public float eatTime = 5f; // Time taken to eat
+    [Range(5, 20)] public float eatTime = 5f; // Time taken to eat
     public float patienceWaiting = 5f; // Current waiting time
-
 
     [Header("Customer Components")]
     [SerializeField] private Animator animator;
     [SerializeField] private FollowPath followPath;
     [SerializeField] private NPCController npcController;
 
-    private bool isHungry = true;
+    [Header("Bubble Button Settings")]
+    public UI_CustomerBubble customerButtonBubble;
+
+    private Chair currentChair;
+
+    public bool isAlreadyEntered { get; private set; } = false;
     private int satisfaction = 3; // Customer satisfaction level (0-3)
 
     void Awake()
@@ -27,6 +31,8 @@ public class Customer : MonoBehaviour
         if (animator == null) animator = GetComponent<Animator>();
         if (npcController == null) npcController = GetComponent<NPCController>();
         if (followPath == null) followPath = GetComponent<FollowPath>();
+        if (restaurantContext == null) restaurantContext = FindFirstObjectByType<RestaurantContext>();
+        if (customerButtonBubble == null) customerButtonBubble = GetComponent<UI_CustomerBubble>();
     }
     void Start()
     {
@@ -43,52 +49,88 @@ public class Customer : MonoBehaviour
             Debug.LogWarning("Customer: No available chairs found!");
         }
     }
-
+    private void OnEnable() {
+        customerButtonBubble.onFoodOrdered.AddListener(OnFoodOrdered);
+        customerButtonBubble.onFoodNotOrdered.AddListener(OnFoodNotOrdered);
+    }
+    private void OnDisable() {
+        customerButtonBubble.onFoodOrdered.RemoveListener(OnFoodOrdered);
+        customerButtonBubble.onFoodNotOrdered.RemoveListener(OnFoodNotOrdered);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         collision.TryGetComponent<Chair>(out Chair chair);
         if (chair != null)
         {
-            float duration = Random.Range(eatTime-4f, eatTime+4f);
-            SitOnChair(chair, duration); // Sit for a random duration between 3 to 7 seconds
+            currentChair = chair;
+            SitOnChair();
         }
     }
 
-    public void LeaveRestaurant()
-    {
-        followPath.endNode = restaurantContext.entrance.gameObject;
-        followPath.FindNewPath();
-    }
-    public void SearchForChair(Chair chair)
+    private void SearchForChair(Chair chair)
     {
         followPath.endNode = chair.gameObject;
         followPath.FindNewPath();
     }
-    public void SitOnChair(Chair chair, float duration)
+    private void SitOnChair()
     {
         if (animator != null)
         {
             animator.SetBool("isSitting", true);
         }
 
-        chair.Sit(this);
+        currentChair.Sit(this);
 
         npcController.movement = Vector2.zero;
-        transform.position = chair.transform.position;
-        npcController.direction = chair.transform.right; // Face the same direction as the chair
+        transform.position = currentChair.transform.position;
+        npcController.direction = currentChair.transform.right; // Face the same direction as the chair
 
-        // Start a coroutine to stand up after the specified duration
-        StartCoroutine(StandUpAfterDelay(chair, duration));
+        if (!isAlreadyEntered)
+        {
+            isAlreadyEntered = true;
+            OrderFood();
+        }
     }
-    private System.Collections.IEnumerator StandUpAfterDelay(Chair chair, float delay)
+    private void OrderFood()
     {
-        yield return new WaitForSeconds(delay);
+        // Logic to order food from the menu
+        if (restaurantContext.menuItems.Count > 0)
+        {
+            int randomIndex = Random.Range(0, restaurantContext.menuItems.Count);
+            BaseItem_SO orderedItem = restaurantContext.menuItems[randomIndex];
 
+            // Show the bubble button UI
+            customerButtonBubble.ShowOrderFoodBubble(orderedItem, patienceWaiting);
+            Debug.Log($"{customerName} ordered: {orderedItem.name}");
+        }
+        else
+        {
+            Debug.LogWarning("Customer: No menu items available to order.");
+            LeaveRestaurant();
+        }
+    }
+    private void OnFoodOrdered()
+    {
+        Debug.Log($"{customerName} has ordered food.");
+        satisfaction = Random.Range(1, 3); // Random satisfaction level for demo purposes
+        // Logic to handle food ordering
+        Invoke(nameof(LeaveRestaurant), eatTime); // Simulate eating time before leaving
+    }
+    private void OnFoodNotOrdered()
+    {
+        Debug.Log($"{customerName} did not order food and is leaving.");
+        satisfaction = 0; // Customer is unhappy
+        LeaveRestaurant();
+    }
+    private void LeaveRestaurant()
+    {
         if (animator != null)
         {
             animator.SetBool("isSitting", false);
         }
-        chair.StandUp(this);
-        LeaveRestaurant();
+        currentChair.StandUp(this);
+
+        followPath.endNode = restaurantContext.entrance.gameObject;
+        followPath.FindNewPath();
     }
 }

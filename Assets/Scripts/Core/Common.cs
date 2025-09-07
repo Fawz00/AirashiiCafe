@@ -29,7 +29,21 @@ public class Common
         Generic,
         Meal,
         Beverage,
+        MealSet,
         OtherConsumable,
+    }
+
+    public enum UpdateType
+    {
+        Add,
+        Remove,
+        Set,
+    }
+
+    public enum ServiceType
+    {
+        InPlace,
+        TakeOrder
     }
 
     public static T GetScriptableObjectFromResource<T>(string path_to_id) where T : ScriptableObject
