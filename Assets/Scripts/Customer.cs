@@ -51,9 +51,12 @@ public class Customer : MonoBehaviour
 
         if (isSeated)
         {
+            Debug.Log("Customer sedang duduk di meja.");
             stayTimer += Time.deltaTime;
             if (stayTimer >= stayDuration)
+
                 LeaveTable();
+                Debug.Log("Customer selesai makan dan akan pergi.");
         }
     }
 
