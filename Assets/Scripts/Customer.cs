@@ -51,12 +51,12 @@ public class Customer : MonoBehaviour
 
         if (isSeated)
         {
-            Debug.Log("Customer sedang duduk di meja.");
+            // Debug.Log("Customer sedang duduk di meja.");
             stayTimer += Time.deltaTime;
             if (stayTimer >= stayDuration)
 
                 LeaveTable();
-                Debug.Log("Customer selesai makan dan akan pergi.");
+                
         }
     }
 
@@ -78,10 +78,12 @@ public class Customer : MonoBehaviour
                 {
                     isSeated = true;
                     stayTimer = 0f;
+
                 }
                 else
                 {
                     OnCustomerLeave?.Invoke(this);
+
                     Destroy(gameObject);
                 }
             }
@@ -100,6 +102,7 @@ public class Customer : MonoBehaviour
             {
                 isSeated = true;
                 stayTimer = 0f;
+                Debug.Log("Customer duduk di meja.");
             }
             else
             {
@@ -136,5 +139,6 @@ public class Customer : MonoBehaviour
         currentPathIndex = 0;
         isMoving = true;
         isLeaving = true;
+        Debug.Log("Customer meninggalkan meja.");
     }
 }
