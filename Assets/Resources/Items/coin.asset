@@ -15,6 +15,6 @@ MonoBehaviour:
   name: Coin
   typeId: coin
   description: In another world, humans call it 'money'.
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 3a056aefbd31e3c4bbf1d9b9e6f2a64c, type: 3}
   rarity: 1
   isStackable: 1

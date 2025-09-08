@@ -56,6 +56,10 @@ public class PathFindNode : MonoBehaviour
                     if (!node.next.Contains(this.gameObject))
                         node.next.Add(this.gameObject);
                 }
+
+#if UNITY_EDITOR
+    EditorUtility.SetDirty(node);
+#endif
             }
         }
 
@@ -85,6 +89,9 @@ public class PathFindNode : MonoBehaviour
                     node.next.Remove(this.gameObject);
                 if (node.previous.Contains(this.gameObject))
                     node.previous.Remove(this.gameObject);
+#if UNITY_EDITOR
+                EditorUtility.SetDirty(node);
+#endif
             }
         }
         
@@ -103,10 +110,16 @@ public class PathFindNode : MonoBehaviour
             if (node.next.Contains(this.gameObject))
             {
                 node.next.Remove(this.gameObject);
+#if UNITY_EDITOR
+    EditorUtility.SetDirty(node);
+#endif
             }
             if (node.previous.Contains(this.gameObject))
             {
                 node.previous.Remove(this.gameObject);
+#if UNITY_EDITOR
+    EditorUtility.SetDirty(node);
+#endif
             }
         }
 

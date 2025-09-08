@@ -45,6 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entrance: {fileID: 0}
+  kitchen: {fileID: 0}
   tableSets: []
+  maids: []
   menuItems:
-  - {fileID: 11400000, guid: 13860518e6c21e64db811b26e491a861, type: 2}
+  - {fileID: 11400000, guid: e8a6d783147ea05498320bb85467a6a7, type: 2}
+  - {fileID: 11400000, guid: 244d2926eb17f4145836cdb9cb579d5b, type: 2}
+  onIncomeAdded:
+    m_PersistentCalls:
+      m_Calls: []

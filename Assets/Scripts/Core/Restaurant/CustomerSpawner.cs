@@ -20,11 +20,11 @@ public class CustomerSpawner : MonoBehaviour
     private void Update()
     {
         timer += Time.unscaledDeltaTime;
-        if (timer >= spawnInterval)
+        if (timer >= spawnInterval && restaurantContext != null && restaurantContext.entrance != null)
         {
             timer = 0f;
             int randomValue = Random.Range(0, 10);
-            if (randomValue < randomness)
+            if (randomValue < randomness && restaurantContext.GetAvailableChair() != null)
             {
                 SpawnCustomer();
             }

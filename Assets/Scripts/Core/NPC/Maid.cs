@@ -13,7 +13,7 @@ public class Maid : MonoBehaviour
     public RestaurantContext restaurantContext;
 
     [Header("Maid Settings")]
-    public string customerName = "Maid";
+    public string maidName = "Maid";
     [Range(0, 10)] public int sleepy = 10; // How sleepy the maid is (0-10)
     public PathFindNode homePosition;
 
@@ -35,6 +35,11 @@ public class Maid : MonoBehaviour
     void Start()
     {
         if (restaurantContext == null) restaurantContext = FindFirstObjectByType<RestaurantContext>();
+
+        if (homePosition == null)
+        {
+            homePosition = followPath.FindClosestNode();
+        }
 
         if (homePosition != null)
         {

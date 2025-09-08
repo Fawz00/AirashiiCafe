@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RestaurantContext : MonoBehaviour
 {
@@ -10,7 +12,12 @@ public class RestaurantContext : MonoBehaviour
     public List<Maid> maids = new List<Maid>();
 
     [Header("Restaurant Menu Items")]
-    public List<BaseItem_SO> menuItems = new List<BaseItem_SO>();
+    public List<MenuItem_SO> menuItems = new List<MenuItem_SO>();
+
+    [Header("Events")]
+    public UnityEvent<int> onIncomeAdded;
+
+    public int incomeToday { get; private set; } = 0; // Total income for the current day
 
     private void Awake()
     {
@@ -106,5 +113,11 @@ public class RestaurantContext : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public void AddIncome(int amount)
+    {
+        incomeToday += amount;
+        onIncomeAdded?.Invoke(amount);
     }
 }

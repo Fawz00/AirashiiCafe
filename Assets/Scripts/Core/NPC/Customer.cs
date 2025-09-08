@@ -21,9 +21,11 @@ public class Customer : MonoBehaviour
     [Header("Bubble Button Settings")]
     public UI_CustomerBubble customerButtonBubble;
 
-    private Chair currentChair;
-
     public bool isAlreadyEntered { get; private set; } = false;
+
+    private Chair currentChair;
+    private MenuItem_SO orderedItem;
+
     private int satisfaction = 3; // Customer satisfaction level (0-3)
 
     void Awake()
@@ -42,7 +44,8 @@ public class Customer : MonoBehaviour
         chair?.Reserve(this);
         if (chair != null && !chair.isOccupied && chair.reservedFor == this)
         {
-            SearchForChair(chair);
+            currentChair = chair;
+            SearchForChair();
         }
         else
         {
@@ -62,14 +65,13 @@ public class Customer : MonoBehaviour
         collision.TryGetComponent<Chair>(out Chair chair);
         if (chair != null)
         {
-            currentChair = chair;
-            SitOnChair();
+            if (chair == currentChair) SitOnChair();
         }
     }
 
-    private void SearchForChair(Chair chair)
+    private void SearchForChair()
     {
-        followPath.endNode = chair.gameObject;
+        followPath.endNode = currentChair.gameObject;
         followPath.FindNewPath();
     }
     private void SitOnChair()
@@ -97,10 +99,11 @@ public class Customer : MonoBehaviour
         if (restaurantContext.menuItems.Count > 0)
         {
             int randomIndex = Random.Range(0, restaurantContext.menuItems.Count);
-            BaseItem_SO orderedItem = restaurantContext.menuItems[randomIndex];
+            MenuItem_SO orderedItem = restaurantContext.menuItems[randomIndex];
+            this.orderedItem = orderedItem;
 
             // Show the bubble button UI
-            customerButtonBubble.ShowOrderFoodBubble(orderedItem, patienceWaiting);
+            customerButtonBubble.ShowOrderFoodBubble(orderedItem.item, patienceWaiting);
             Debug.Log($"{customerName} ordered: {orderedItem.name}");
         }
         else
@@ -128,8 +131,11 @@ public class Customer : MonoBehaviour
         {
             animator.SetBool("isSitting", false);
         }
+        if (orderedItem != null) restaurantContext.AddIncome(orderedItem.price);
         currentChair.StandUp(this);
 
+        orderedItem = null;
+        currentChair = null;
         followPath.endNode = restaurantContext.entrance.gameObject;
         followPath.FindNewPath();
     }

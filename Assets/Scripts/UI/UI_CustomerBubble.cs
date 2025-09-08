@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -15,6 +16,7 @@ public class UI_CustomerBubble : MonoBehaviour
     [SerializeField] private Canvas canvas;
     [SerializeField] private Button button;
     [SerializeField] private Image image;
+    [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private Slider slider;
 
     private float currentWaitTime = 10f;
@@ -41,6 +43,10 @@ public class UI_CustomerBubble : MonoBehaviour
         if (image == null)
         {
             image = GetComponentInChildren<Image>();
+        }
+        if (text == null)
+        {
+            text = GetComponentInChildren<TextMeshProUGUI>();
         }
     }
     private void Start()
@@ -84,13 +90,14 @@ public class UI_CustomerBubble : MonoBehaviour
         }
 
         // Set the bubble image to the item's sprite
-        if (item != null && item.icon != null)
+        if (item != null)
         {
-            image.sprite = item.icon;
+            if (item.icon != null) image.sprite = item.icon;
+            if (item.name != null) text.text = $"Order {item.name}";
         }
         else
         {
-            Debug.LogWarning("UI_CustomerBubble: Item or item sprite is null.");
+            Debug.LogWarning("UI_CustomerBubble: Item is null.");
         }
         this.waitTime = waitTime;
         currentWaitTime = waitTime;

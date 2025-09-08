@@ -46,5 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   customerPrefab: {fileID: 8799874727714990071, guid: d57673b28c0a01d478a2a19a220bd10b, type: 3}
   restaurantContext: {fileID: 0}
-  spawnInterval: 3
-  randomness: 9
+  spawnInterval: 2
+  randomness: 8

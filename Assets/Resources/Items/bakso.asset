@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be9d833fc0ac4694dbf71d4a6a00ccf6, type: 3}
-  m_Name: nasi_goreng
+  m_Name: bakso
   m_EditorClassIdentifier: 
-  name: Nasi Goreng
-  typeId: nasi_goreng
-  description: Rice that is said to be 'fried'.
-  icon: {fileID: 21300000, guid: bb26423824ec071439d3c266c156fbbe, type: 3}
+  name: Bakso
+  typeId: bakso
+  description: Just a normal meatball, nothing more.
+  icon: {fileID: 21300000, guid: 16802ff14795d4846aa2d17ebdeaa09e, type: 3}
   rarity: 0
   isStackable: 1

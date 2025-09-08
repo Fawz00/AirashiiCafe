@@ -95,17 +95,19 @@ public class FollowPath : MonoBehaviour
         }
     }
 
-    public PathFindNode FindClosestNode()
+    public PathFindNode FindClosestNode(float range = -1f)
     {
         float minDist = float.MaxValue;
         PathFindNode closest = null;
 
-        // Find the closest node within the FindStartRange range
+        // Use provided range if specified, otherwise use FindStartRange
+        float effectiveRange = (range > 0f) ? range : FindStartRange;
+
         var allNodes = GameObject.FindObjectsByType<PathFindNode>(FindObjectsSortMode.None);
         foreach (var node in allNodes)
         {
             float dist = Vector3.Distance(transform.position, node.transform.position);
-            if (dist < minDist && dist <= FindStartRange)
+            if (dist < minDist && (effectiveRange < 0f || dist <= effectiveRange))
             {
                 minDist = dist;
                 closest = node;
