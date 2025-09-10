@@ -46,7 +46,7 @@ public class Common
         TakeOrder
     }
 
-    public static T GetScriptableObjectFromResource<T>(string path_to_id) where T : ScriptableObject
+    public static T GetScriptableObjectFromResources<T>(string path_to_id) where T : ScriptableObject
     {
         T data = Resources.Load<T>(path_to_id);
         if (data == null)
@@ -59,7 +59,7 @@ public class Common
 
     public static PlayerData_SO GetSavedData()
     {
-        PlayerData_SO data = GetScriptableObjectFromResource<PlayerData_SO>("player_data");
+        PlayerData_SO data = GetScriptableObjectFromResources<PlayerData_SO>("player_data");
         return data;
     }
 }

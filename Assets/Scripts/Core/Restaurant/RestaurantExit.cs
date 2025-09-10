@@ -12,7 +12,7 @@ public class RestaurantExit : MonoBehaviour
             if (customer.isAlreadyEntered)
             {
                 Destroy(customer.gameObject);
-                Debug.Log($"{customer.customerName} has exited the restaurant and is removed from the game.");
+                Debug.Log($"{customer.characterData.GetCharacterName()} has exited the restaurant and is removed from the game.");
             }
         }
     }

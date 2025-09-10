@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(NPCController))]
 [RequireComponent(typeof(FollowPath))]
+[RequireComponent(typeof(Character))]
 public class Maid : MonoBehaviour
 {
     [Header("Maid Events")]
@@ -13,21 +14,20 @@ public class Maid : MonoBehaviour
     public RestaurantContext restaurantContext;
 
     [Header("Maid Settings")]
-    public string maidName = "Maid";
-    [Range(0, 10)] public int sleepy = 10; // How sleepy the maid is (0-10)
+    public Character characterData;
     public PathFindNode homePosition;
 
     [Header("Maid Components")]
-    [SerializeField] private Animator animator;
     [SerializeField] private FollowPath followPath;
     [SerializeField] private NPCController npcController;
 
     public bool isBusy { get; private set; } = false;
     private GameObject currentAttention = null;
+    private Animator animator;
 
     void Awake()
     {
-        if (animator == null) animator = GetComponent<Animator>();
+        if (characterData == null) characterData = GetComponent<Character>();
         if (npcController == null) npcController = GetComponent<NPCController>();
         if (followPath == null) followPath = GetComponent<FollowPath>();
         if (restaurantContext == null) restaurantContext = FindFirstObjectByType<RestaurantContext>();
@@ -35,11 +35,16 @@ public class Maid : MonoBehaviour
     void Start()
     {
         if (restaurantContext == null) restaurantContext = FindFirstObjectByType<RestaurantContext>();
+        if (animator == null)
+        {
+            animator = characterData.getAnimator();
+            npcController.animator = animator;
+        }
 
         if (homePosition == null)
-        {
-            homePosition = followPath.FindClosestNode();
-        }
+            {
+                homePosition = followPath.FindClosestNode();
+            }
 
         if (homePosition != null)
         {

@@ -3,18 +3,18 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(NPCController))]
 [RequireComponent(typeof(FollowPath))]
+[RequireComponent(typeof(Character))]
 public class Customer : MonoBehaviour
 {
     [Header("Restaurant Settings")]
     public RestaurantContext restaurantContext;
 
     [Header("Customer Settings")]
-    public string customerName = "Customer";
+    public Character characterData;
     [Range(5, 20)] public float eatTime = 5f; // Time taken to eat
     public float patienceWaiting = 5f; // Current waiting time
 
     [Header("Customer Components")]
-    [SerializeField] private Animator animator;
     [SerializeField] private FollowPath followPath;
     [SerializeField] private NPCController npcController;
 
@@ -22,15 +22,17 @@ public class Customer : MonoBehaviour
     public UI_CustomerBubble customerButtonBubble;
 
     public bool isAlreadyEntered { get; private set; } = false;
+    public bool hasEaten { get; private set; } = false;
 
     private Chair currentChair;
     private MenuItem_SO orderedItem;
 
     private int satisfaction = 3; // Customer satisfaction level (0-3)
+    private Animator animator;
 
     void Awake()
     {
-        if (animator == null) animator = GetComponent<Animator>();
+        if (characterData == null) characterData = GetComponent<Character>();
         if (npcController == null) npcController = GetComponent<NPCController>();
         if (followPath == null) followPath = GetComponent<FollowPath>();
         if (restaurantContext == null) restaurantContext = FindFirstObjectByType<RestaurantContext>();
@@ -39,6 +41,11 @@ public class Customer : MonoBehaviour
     void Start()
     {
         if (restaurantContext == null) restaurantContext = FindFirstObjectByType<RestaurantContext>();
+        if (animator == null)
+        {
+            animator = characterData.getAnimator();
+            npcController.animator = animator;
+        }
 
         Chair chair = restaurantContext.GetAvailableChair();
         chair?.Reserve(this);
@@ -76,10 +83,7 @@ public class Customer : MonoBehaviour
     }
     private void SitOnChair()
     {
-        if (animator != null)
-        {
-            animator.SetBool("isSitting", true);
-        }
+        animator?.SetBool("isSitting", true);
 
         currentChair.Sit(this);
 
@@ -104,7 +108,7 @@ public class Customer : MonoBehaviour
 
             // Show the bubble button UI
             customerButtonBubble.ShowOrderFoodBubble(orderedItem.item, patienceWaiting);
-            Debug.Log($"{customerName} ordered: {orderedItem.name}");
+            Debug.Log($"{characterData.GetCharacterName()} ordered: {orderedItem.name}");
         }
         else
         {
@@ -114,24 +118,23 @@ public class Customer : MonoBehaviour
     }
     private void OnFoodOrdered()
     {
-        Debug.Log($"{customerName} has ordered food.");
+        Debug.Log($"{characterData.GetCharacterName()} has ordered food.");
+        hasEaten = true;
         satisfaction = Random.Range(1, 3); // Random satisfaction level for demo purposes
         // Logic to handle food ordering
         Invoke(nameof(LeaveRestaurant), eatTime); // Simulate eating time before leaving
     }
     private void OnFoodNotOrdered()
     {
-        Debug.Log($"{customerName} did not order food and is leaving.");
+        Debug.Log($"{characterData.GetCharacterName()} did not order food and is leaving.");
+        hasEaten = false;
         satisfaction = 0; // Customer is unhappy
         LeaveRestaurant();
     }
     private void LeaveRestaurant()
     {
-        if (animator != null)
-        {
-            animator.SetBool("isSitting", false);
-        }
-        if (orderedItem != null) restaurantContext.AddIncome(orderedItem.price);
+        animator?.SetBool("isSitting", false);
+        if (orderedItem != null && hasEaten) restaurantContext.AddIncome(orderedItem.price);
         currentChair.StandUp(this);
 
         orderedItem = null;

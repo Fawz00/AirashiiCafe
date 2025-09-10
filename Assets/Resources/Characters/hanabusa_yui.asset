@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 255bbdc6eb6ffc24a81221ebddab60f2, type: 3}
+  m_Name: hanabusa_yui
+  m_EditorClassIdentifier: 
+  id: hanabusa_yui
+  characterIcon: {fileID: 3273598456959306250, guid: 4485910c5d7c22e49b54fde1357b4c09, type: 3}
+  characterPrefab: {fileID: 7870773467858040344, guid: 94bb1c8a6a70c2b48b123a65a0d286e2, type: 3}
+  characterName: Hanabusa Yui
+  description: Character Description
+  age: 18
+  height: 162
+  weight: 58
+  rarity: 1
+  sleepy: 50
+  energy: 50
+  care: 50
