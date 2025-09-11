@@ -29,10 +29,24 @@ public class Common
         Generic,
         Meal,
         Beverage,
+        MealSet,
         OtherConsumable,
     }
 
-    public static T GetScriptableObjectFromResource<T>(string path_to_id) where T : ScriptableObject
+    public enum UpdateType
+    {
+        Add,
+        Remove,
+        Set,
+    }
+
+    public enum ServiceType
+    {
+        InPlace,
+        TakeOrder
+    }
+
+    public static T GetScriptableObjectFromResources<T>(string path_to_id) where T : ScriptableObject
     {
         T data = Resources.Load<T>(path_to_id);
         if (data == null)
@@ -45,7 +59,7 @@ public class Common
 
     public static PlayerData_SO GetSavedData()
     {
-        PlayerData_SO data = GetScriptableObjectFromResource<PlayerData_SO>("player_data");
+        PlayerData_SO data = GetScriptableObjectFromResources<PlayerData_SO>("player_data");
         return data;
     }
 }

@@ -1,3 +1,5 @@
+using System;
+using Core.Events;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -13,9 +15,13 @@ public class UI_HUDRestaurant : UIScript
     private VisualElement order3;
     private Label coins;
 
+    private RestaurantContext restaurantContext;
+
     protected override void Awake()
     {
         base.Awake();
+
+        restaurantContext = FindFirstObjectByType<RestaurantContext>();
 
         pauseButton = uiDocument.rootVisualElement.Q<Button>("pauseButton");
         timerBar = uiDocument.rootVisualElement.Q<ProgressBar>("timerBar");
@@ -27,19 +33,33 @@ public class UI_HUDRestaurant : UIScript
         order3 = uiDocument.rootVisualElement.Q<VisualElement>("order3");
         coins = uiDocument.rootVisualElement.Q<Label>("coins");
     }
+    void Start()
+    {
+        coins.text = restaurantContext.incomeToday.ToString();
+    }
     void OnEnable()
     {
         pauseButton.clicked += OnPauseButtonClicked;
+        restaurantContext.onIncomeAdded.AddListener(OnIncomeAdded);
+        EventBus.Subscribe<Event_OnInventoryUpdated>(OnInventoryUpdated);
     }
+
     void OnDisable()
     {
         pauseButton.clicked -= OnPauseButtonClicked;
+        restaurantContext.onIncomeAdded.RemoveListener(OnIncomeAdded);
+        EventBus.Unsubscribe<Event_OnInventoryUpdated>(OnInventoryUpdated);
     }
 
-    void LateUpdate()
+    private void OnInventoryUpdated(Event_OnInventoryUpdated updated)
     {
-        int coinData = GameManager.Instance.playerData.inventory.GetItemQuantity("coin");
-        coins.text = coinData.ToString();
+        // Update cook buttons based on inventory changes
+    }
+
+    void OnIncomeAdded(int amount)
+    {
+        int coinsToday = restaurantContext.incomeToday;
+        coins.text = coinsToday.ToString();
     }
 
     private void OnPauseButtonClicked()

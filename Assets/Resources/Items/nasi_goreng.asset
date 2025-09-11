@@ -15,6 +15,6 @@ MonoBehaviour:
   name: Nasi Goreng
   typeId: nasi_goreng
   description: Rice that is said to be 'fried'.
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: bb26423824ec071439d3c266c156fbbe, type: 3}
   rarity: 0
   isStackable: 1

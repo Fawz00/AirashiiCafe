@@ -86,3 +86,4 @@ MonoBehaviour:
   onTouchingThis:
     m_PersistentCalls:
       m_Calls: []
+  connectionRange: 0.7

@@ -29,6 +29,13 @@ public class ButtonDrawer : Editor
                 if (GUILayout.Button(label))
                 {
                     method.Invoke(target, null);
+
+                    EditorUtility.SetDirty(target);
+                    var monoBehaviour = target as MonoBehaviour;
+                    if (monoBehaviour != null && monoBehaviour.gameObject.scene.IsValid())
+                    {
+                        UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(monoBehaviour.gameObject.scene);
+                    }
                 }
 
                 GUI.enabled = previousGUIState;

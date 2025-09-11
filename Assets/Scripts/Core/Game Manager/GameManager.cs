@@ -7,8 +7,13 @@ public class GameManager : Singleton<GameManager>
 {
     [SerializeField] public bool isLocalDebug = false;
 
+    [Header("References")]
+    [SerializeField] public CameraController mainCamera;
     [SerializeField] public PlayerControllerBase playerControllerBase;
     [SerializeField] public PlayerData_SO playerData;
+
+    [Header("Prefab")]
+    [SerializeField] public GameObject mainCameraPrefab;
     public UIStack CurrentUIStack => UIManager.Instance.CurrentUI;
 
     public override void Awake()
@@ -29,6 +34,20 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
-        if(!isLocalDebug) LevelManager.LoadSubLevel(Common.gameScene);
+        if (mainCamera == null)
+        {
+            mainCamera = FindFirstObjectByType<CameraController>();
+            if (mainCamera == null)
+            {
+                mainCamera = Instantiate(mainCameraPrefab).GetComponent<CameraController>();
+
+                if (mainCamera == null)
+                {
+                    Debug.LogError("Failed to instantiate main camera from prefab.");
+                }
+            }
+        }
+        
+        if (!isLocalDebug) LevelManager.LoadSubLevel(Common.gameScene);
     }
 }
