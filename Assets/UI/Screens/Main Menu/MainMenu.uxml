@@ -1,10 +1,17 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI/Screens/MainMenu/MainMenu%20Style.uss?fileID=7433441132597879392&amp;guid=d899081c38a69dc4593a398d79f78727&amp;type=3#MainMenu Style" />
-    <engine:VisualElement name="root" style="flex-grow: 1; background-color: rgb(0, 0, 192);">
-        <engine:Label text="&#10;Welcome To 愛らしいカフェー InDev&#10;===============================&#10;&#10;Last updated 20250903" style="color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/Fonts/CourierPrime-Regular.ttf?fileID=12800000&amp;guid=8e3c3638fb3d2df4fac8ab4ae1c5ad76&amp;type=3#CourierPrime-Regular&quot;); font-size: 45px; -unity-font-style: normal;" />
-        <engine:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: center;">
-            <engine:Button text="[EXIT]" name="quitButton" class="terminal_button" style="margin-right: 12px;" />
-            <engine:Button text="[PLAY]" name="playButton" class="terminal_button" style="margin-left: 12px;" />
+    <Style src="project://database/Assets/UI/Screens/Main%20Menu/MainMenu%20Style.uss?fileID=7433441132597879392&amp;guid=d899081c38a69dc4593a398d79f78727&amp;type=3#MainMenu Style" />
+    <engine:VisualElement name="root" style="flex-grow: 1; flex-direction: row; justify-content: space-between;">
+        <engine:VisualElement name="background" style="flex-grow: 1; position: absolute; width: 100%; height: 100%; background-image: url(&quot;project://database/Assets/Textures/setouchi-kagoshima.jpg?fileID=2800000&amp;guid=0a6f17216d4a4e14997af3a4e32c5f55&amp;type=3#setouchi-kagoshima&quot;); -unity-background-image-tint-color: rgba(255, 255, 255, 0.27);">
+            <engine:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Textures/Maid%20Girl.png?fileID=2800000&amp;guid=67475683ac884af46b927f051e47d7b9&amp;type=3#Maid Girl&quot;); -unity-background-scale-mode: scale-to-fit; position: absolute; height: 1473px; width: 1124px; left: -42px; top: 164px;" />
+            <engine:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Textures/Boss%20Guy.png?fileID=2800000&amp;guid=14e37b55956294a4d9f09c59e466929f&amp;type=3#Boss Guy&quot;); -unity-background-scale-mode: scale-to-fit; position: absolute; height: 1289px; width: 1124px; right: -9px; top: 201px;" />
+        </engine:VisualElement>
+        <engine:VisualElement name="title" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Textures/Airashii%20Cafe.png?fileID=2800000&amp;guid=9c710d543e2bdc24da174449faff7acc&amp;type=3#Airashii Cafe&quot;); -unity-background-scale-mode: scale-to-fit; position: absolute; top: 40px; justify-content: space-between; flex-shrink: 1; width: 100%; height: 271px;" />
+        <engine:VisualElement name="left" style="flex-direction: column; justify-content: center; position: relative; width: 453px; margin-top: 20px; margin-right: 20px; margin-bottom: 20px; margin-left: 20px;">
+            <engine:Button text="QUIT" name="quitButton" class="terminal_button exit-button" style="margin-right: 12px;" />
+        </engine:VisualElement>
+        <engine:VisualElement name="right" style="flex-direction: column; justify-content: center; position: relative; width: 453px; margin-top: 250px; margin-right: 20px; margin-bottom: 60px; margin-left: 20px;">
+            <engine:VisualElement class="panel" />
+            <engine:Button text="PLAY" name="playButton" class="terminal_button play-button" />
         </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>

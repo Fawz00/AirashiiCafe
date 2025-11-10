@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Chair : MonoBehaviour
 {
+    public Vector2 sitDirection = Vector2.right;
+
     public bool isReserved { get; private set; } = false;
     public Customer reservedFor { get; private set; } = null;
 
@@ -54,7 +56,7 @@ public class Chair : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Vector3 direction = transform.right; // Assuming the chair faces right
+        Vector3 direction = new Vector3(sitDirection.x, sitDirection.y, 0).normalized;
         Gizmos.DrawLine(transform.position, transform.position + direction);
     }
 }

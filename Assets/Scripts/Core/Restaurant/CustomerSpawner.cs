@@ -16,10 +16,19 @@ public class CustomerSpawner : MonoBehaviour
         {
             restaurantContext = FindFirstObjectByType<RestaurantContext>();
         }
+
+        if (restaurantContext != null)
+        {
+            restaurantContext.onRestaurantClosed.AddListener(OnRestaurantClosed);
+        }
+        else
+        {
+            Debug.LogError("CustomerSpawner: RestaurantContext is not assigned and none found in the scene.");
+        }
     }
     private void Update()
     {
-        timer += Time.unscaledDeltaTime;
+        timer += Time.deltaTime;
         if (timer >= spawnInterval && restaurantContext != null && restaurantContext.entrance != null)
         {
             timer = 0f;
@@ -29,6 +38,15 @@ public class CustomerSpawner : MonoBehaviour
                 SpawnCustomer();
             }
         }
+    }
+    private void OnDisable() {
+        restaurantContext.onRestaurantClosed.RemoveListener(OnRestaurantClosed);
+    }
+
+    private void OnRestaurantClosed()
+    {
+        // Stop spawning customers when the restaurant is closed
+        enabled = false;
     }
 
     private void SpawnCustomer()

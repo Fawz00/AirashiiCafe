@@ -7,12 +7,7 @@ public class UI_HUDRestaurant : UIScript
 {
     private Button pauseButton;
     private ProgressBar timerBar;
-    private Button cookButton1;
-    private Button cookButton2;
-    private Button cookButton3;
-    private VisualElement order1;
-    private VisualElement order2;
-    private VisualElement order3;
+    private Label days;
     private Label coins;
 
     private RestaurantContext restaurantContext;
@@ -24,23 +19,37 @@ public class UI_HUDRestaurant : UIScript
         restaurantContext = FindFirstObjectByType<RestaurantContext>();
 
         pauseButton = uiDocument.rootVisualElement.Q<Button>("pauseButton");
-        timerBar = uiDocument.rootVisualElement.Q<ProgressBar>("timerBar");
-        cookButton1 = uiDocument.rootVisualElement.Q<Button>("cookButton1");
-        cookButton2 = uiDocument.rootVisualElement.Q<Button>("cookButton2");
-        cookButton3 = uiDocument.rootVisualElement.Q<Button>("cookButton3");
-        order1 = uiDocument.rootVisualElement.Q<VisualElement>("order1");
-        order2 = uiDocument.rootVisualElement.Q<VisualElement>("order2");
-        order3 = uiDocument.rootVisualElement.Q<VisualElement>("order3");
+        timerBar = uiDocument.rootVisualElement.Q<ProgressBar>("time_bar");
+        days = uiDocument.rootVisualElement.Q<Label>("days");
         coins = uiDocument.rootVisualElement.Q<Label>("coins");
     }
     void Start()
     {
+        if (restaurantContext == null)
+        {
+            restaurantContext = FindFirstObjectByType<RestaurantContext>();
+            if (restaurantContext == null)
+            {
+                Debug.LogError("UI_HUDRestaurant: RestaurantContext not found in the scene.");
+                return;
+            }
+        }
+
         coins.text = restaurantContext.incomeToday.ToString();
+    }
+    void Update()
+    {
+        if (restaurantContext == null)
+        {
+            Debug.LogError("UI_HUDRestaurant: RestaurantContext is not assigned.");
+            return;
+        }
+        if (timerBar == null) Debug.LogError("UI_HUDRestaurant: TimerBar is not assigned.");
+        timerBar.value = restaurantContext.remainingOpenTime / restaurantContext.openDuration;
     }
     void OnEnable()
     {
         pauseButton.clicked += OnPauseButtonClicked;
-        restaurantContext.onIncomeAdded.AddListener(OnIncomeAdded);
         EventBus.Subscribe<Event_OnInventoryUpdated>(OnInventoryUpdated);
     }
 
@@ -48,7 +57,21 @@ public class UI_HUDRestaurant : UIScript
     {
         pauseButton.clicked -= OnPauseButtonClicked;
         restaurantContext.onIncomeAdded.RemoveListener(OnIncomeAdded);
+        restaurantContext.onRestaurantClosed.RemoveListener(OnRestaurantClosed);
         EventBus.Unsubscribe<Event_OnInventoryUpdated>(OnInventoryUpdated);
+    }
+
+    public void SetRestaurantContext(RestaurantContext context)
+    {
+        restaurantContext = context;
+        restaurantContext.onIncomeAdded.AddListener(OnIncomeAdded);
+        restaurantContext.onRestaurantClosed.AddListener(OnRestaurantClosed);
+        days.text = $"Day {restaurantContext.currentDay}";
+    }
+
+    private void OnRestaurantClosed()
+    {
+        timerBar.title = "Closed";
     }
 
     private void OnInventoryUpdated(Event_OnInventoryUpdated updated)

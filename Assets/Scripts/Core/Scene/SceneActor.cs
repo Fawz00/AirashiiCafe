@@ -46,8 +46,6 @@ public class SceneActor : MonoBehaviour
                 GameManager.Instance.playerControllerBase.SetPlayerControlType(Common.PlayerControlType.All);
                 break;
         }
-        
-        // UI_Manager.Instance.AddUI(UI_Manager.Instance.GetUiFromResource("AktivitasSiswa/as_ar_scanner_page"), false, true, true);
     }
 
     void Update()

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 255bbdc6eb6ffc24a81221ebddab60f2, type: 3}
+  m_Name: fujimoto_sayaka
+  m_EditorClassIdentifier: 
+  id: fujimoto_sayaka
+  characterIcon: {fileID: 21300000, guid: 67475683ac884af46b927f051e47d7b9, type: 3}
+  characterPrefab: {fileID: 7870773467858040344, guid: 9877fb84058647d4e9939b4fefd1a75a, type: 3}
+  characterName: Fujimoto Sayaka
+  description: Character Description
+  age: 17
+  height: 162
+  weight: 58
+  rarity: 2
+  sleepy: 50
+  energy: 50
+  care: 50

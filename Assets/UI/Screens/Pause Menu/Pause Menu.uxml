@@ -1,9 +1,10 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Screens/Pause%20Menu/PauseMenu%20Style.uss?fileID=7433441132597879392&amp;guid=a01a48317455eda4da594baec19c7e7d&amp;type=3#PauseMenu Style" />
-    <engine:VisualElement name="root" style="flex-grow: 1; justify-content: center; background-color: rgba(0, 0, 0, 0.39);">
-        <engine:VisualElement style="flex-grow: 0; align-self: center; padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px; background-color: rgba(255, 255, 255, 0.43);">
-            <engine:Label text="PAUSED" style="font-size: 70px;" />
-            <engine:Button text="CONTINUE" name="resumeButton" class="basic-button" />
+    <engine:VisualElement name="root" style="flex-grow: 1; justify-content: center; background-color: rgba(0, 0, 0, 0.57);">
+        <engine:VisualElement style="flex-grow: 1; align-self: center; padding-top: 72px; padding-right: 20px; padding-bottom: 72px; padding-left: 20px;">
+            <engine:VisualElement style="flex-grow: 0; flex-shrink: 0; height: 320px; background-image: url(&quot;project://database/Assets/Textures/Airashii%20Cafe.png?fileID=2800000&amp;guid=9c710d543e2bdc24da174449faff7acc&amp;type=3#Airashii Cafe&quot;); -unity-background-scale-mode: scale-to-fit; width: 720px;" />
+            <engine:Label text="アムUちモワ" style="font-size: 64px; -unity-font-definition: url(&quot;project://database/Assets/Fonts/DarumadropOne-Regular.ttf?fileID=12800000&amp;guid=1da027f940a919a4bba2b8a64c953a09&amp;type=3#DarumadropOne-Regular&quot;); -unity-text-align: upper-center; color: rgb(236, 112, 220); -unity-text-outline-width: 32px; -unity-text-outline-color: rgb(121, 40, 129); margin-bottom: 60px;" />
+            <engine:Button text="C O N T I N U E" name="resumeButton" class="basic-button" />
         </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>

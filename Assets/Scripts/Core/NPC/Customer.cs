@@ -21,6 +21,9 @@ public class Customer : MonoBehaviour
     [Header("Bubble Button Settings")]
     public UI_CustomerBubble customerButtonBubble;
 
+    [Header("Particle System")]
+    public ParticleSystem coinParticles;
+
     public bool isAlreadyEntered { get; private set; } = false;
     public bool hasEaten { get; private set; } = false;
 
@@ -37,6 +40,7 @@ public class Customer : MonoBehaviour
         if (followPath == null) followPath = GetComponent<FollowPath>();
         if (restaurantContext == null) restaurantContext = FindFirstObjectByType<RestaurantContext>();
         if (customerButtonBubble == null) customerButtonBubble = GetComponent<UI_CustomerBubble>();
+        if (coinParticles == null) coinParticles = GetComponentInChildren<ParticleSystem>();
     }
     void Start()
     {
@@ -89,7 +93,7 @@ public class Customer : MonoBehaviour
 
         npcController.movement = Vector2.zero;
         transform.position = currentChair.transform.position;
-        npcController.direction = currentChair.transform.right; // Face the same direction as the chair
+        npcController.direction = currentChair.sitDirection;
 
         if (!isAlreadyEntered)
         {
@@ -134,7 +138,11 @@ public class Customer : MonoBehaviour
     private void LeaveRestaurant()
     {
         animator?.SetBool("isSitting", false);
-        if (orderedItem != null && hasEaten) restaurantContext.AddIncome(orderedItem.price);
+        if (orderedItem != null && hasEaten)
+        {
+            restaurantContext.AddIncome(orderedItem.price);
+            coinParticles?.Play();
+        }
         currentChair.StandUp(this);
 
         orderedItem = null;

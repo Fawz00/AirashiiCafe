@@ -8,6 +8,7 @@ public class PlayerData_SO : ScriptableObject
     [NonSerialized] public string currentScene;
     [SerializeField] public Inventory_SO inventory;
     [SerializeField] public int day = 0;
+    [SerializeField] public int coins = 0;
     
     public PlayerData_SO()
     {

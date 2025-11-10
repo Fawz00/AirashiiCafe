@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4401112799929971329}
   - component: {fileID: 3874088425595764454}
   - component: {fileID: 3483514859258640496}
+  - component: {fileID: 5333954146115410520}
   m_Layer: 0
   m_Name: Maid
   m_TagString: Customer
@@ -33,7 +34,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -81,9 +82,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0.7019608, b: 0.99154836, a: 1}
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: dae93e8557a75d546bc052b8d9c3db79, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.20392157}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -222,9 +223,21 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   restaurantContext: {fileID: 0}
-  customerName: Maid
-  sleepy: 10
+  characterData: {fileID: 0}
   homePosition: {fileID: 0}
-  animator: {fileID: 0}
   followPath: {fileID: 3874088425595764454}
   npcController: {fileID: 8284489010325516122}
+--- !u!114 &5333954146115410520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8799874727714990071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc084b6b219a8644aad08b1d347c7b12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  availableCharacters: []
+  currentCharacter: {fileID: 11400000, guid: f0facd06a77c3e84c9e30b94aa051bdf, type: 2}

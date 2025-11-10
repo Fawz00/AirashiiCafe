@@ -1,19 +1,139 @@
-.terminal_button {
-    align-self: center;
+.panel {
+    flex-grow: 1;
+    background-color: rgba(236, 112, 220, 0.46);
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+    border-left-color: rgb(140, 51, 151);
+    border-right-color: rgb(140, 51, 151);
+    border-top-color: rgb(140, 51, 151);
+    border-bottom-color: rgb(140, 51, 151);
+    border-top-width: 8px;
+    border-right-width: 8px;
+    border-bottom-width: 8px;
+    border-left-width: 8px;
+    margin-top: 12px;
+    margin-right: 12px;
+    margin-bottom: 12px;
+    margin-left: 12px;
+}
+
+.play-button {
+    margin-left: 12px;
     background-color: rgba(0, 0, 0, 0);
+    background-image: url("project://database/Assets/Textures/UI%20Button.png?fileID=2800000&guid=85ba4450de342f74d9b9a33d7dec4181&type=3#UI Button");
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    -unity-background-scale-mode: stretch-to-fill;
+    height: 100px;
     border-top-width: 0;
     border-right-width: 0;
     border-bottom-width: 0;
     border-left-width: 0;
-    font-size: 45px;
-    -unity-font-definition: url("project://database/Assets/Fonts/CourierPrime-Regular.ttf?fileID=12800000&guid=8e3c3638fb3d2df4fac8ab4ae1c5ad76&type=3#CourierPrime-Regular");
     color: rgb(255, 255, 255);
-    padding-top: 8px;
-    padding-right: 8px;
-    padding-bottom: 8px;
-    padding-left: 8px;
-    margin-top: 0;
-    margin-right: 0;
-    margin-bottom: 0;
-    margin-left: 0;
+    -unity-font-definition: url("project://database/Assets/Fonts/DarumadropOne-Regular.ttf?fileID=12800000&guid=1da027f940a919a4bba2b8a64c953a09&type=3#DarumadropOne-Regular");
+    font-size: 51px;
+    -unity-text-align: middle-center;
+    -unity-text-outline-width: 4px;
+    -unity-text-outline-color: rgb(0, 0, 0);
+}
+
+.play-button:hover {
+    margin-left: 12px;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url("project://database/Assets/Textures/UI%20Button.png?fileID=2800000&guid=85ba4450de342f74d9b9a33d7dec4181&type=3#UI Button");
+    -unity-background-image-tint-color: rgb(219, 219, 219);
+    -unity-background-scale-mode: stretch-to-fill;
+    height: 100px;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    color: rgb(255, 255, 255);
+    -unity-font-definition: url("project://database/Assets/Fonts/DarumadropOne-Regular.ttf?fileID=12800000&guid=1da027f940a919a4bba2b8a64c953a09&type=3#DarumadropOne-Regular");
+    font-size: 51px;
+    -unity-text-align: middle-center;
+    -unity-text-outline-width: 4px;
+    -unity-text-outline-color: rgb(0, 0, 0);
+}
+
+.play-button:active {
+    margin-left: 12px;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url("project://database/Assets/Textures/UI%20Button.png?fileID=2800000&guid=85ba4450de342f74d9b9a33d7dec4181&type=3#UI Button");
+    -unity-background-scale-mode: stretch-to-fill;
+    height: 100px;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    color: rgb(255, 255, 255);
+    -unity-font-definition: url("project://database/Assets/Fonts/DarumadropOne-Regular.ttf?fileID=12800000&guid=1da027f940a919a4bba2b8a64c953a09&type=3#DarumadropOne-Regular");
+    font-size: 51px;
+    -unity-text-align: middle-center;
+    -unity-text-outline-width: 4px;
+    -unity-text-outline-color: rgb(0, 0, 0);
+    translate: 0 5px;
+    scale: 0.9 0.9;
+    transition-duration: 0.1s;
+}
+
+.exit-button {
+    margin-left: 12px;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url("project://database/Assets/Textures/UI%20Button.png?fileID=2800000&guid=85ba4450de342f74d9b9a33d7dec4181&type=3#UI Button");
+    -unity-background-image-tint-color: rgb(255, 97, 97);
+    -unity-background-scale-mode: stretch-to-fill;
+    height: 100px;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    color: rgb(255, 255, 255);
+    -unity-font-definition: url("project://database/Assets/Fonts/DarumadropOne-Regular.ttf?fileID=12800000&guid=1da027f940a919a4bba2b8a64c953a09&type=3#DarumadropOne-Regular");
+    font-size: 51px;
+    -unity-text-align: middle-center;
+    -unity-text-outline-width: 4px;
+    -unity-text-outline-color: rgb(0, 0, 0);
+}
+
+.exit-button:hover {
+    margin-left: 12px;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url("project://database/Assets/Textures/UI%20Button.png?fileID=2800000&guid=85ba4450de342f74d9b9a33d7dec4181&type=3#UI Button");
+    -unity-background-scale-mode: stretch-to-fill;
+    height: 100px;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    color: rgb(255, 255, 255);
+    -unity-font-definition: url("project://database/Assets/Fonts/DarumadropOne-Regular.ttf?fileID=12800000&guid=1da027f940a919a4bba2b8a64c953a09&type=3#DarumadropOne-Regular");
+    font-size: 51px;
+    -unity-text-align: middle-center;
+    -unity-text-outline-width: 4px;
+    -unity-text-outline-color: rgb(0, 0, 0);
+    -unity-background-image-tint-color: rgb(226, 91, 91);
+}
+
+.exit-button:active {
+    margin-left: 12px;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url("project://database/Assets/Textures/UI%20Button.png?fileID=2800000&guid=85ba4450de342f74d9b9a33d7dec4181&type=3#UI Button");
+    -unity-background-scale-mode: stretch-to-fill;
+    height: 100px;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    color: rgb(255, 255, 255);
+    -unity-font-definition: url("project://database/Assets/Fonts/DarumadropOne-Regular.ttf?fileID=12800000&guid=1da027f940a919a4bba2b8a64c953a09&type=3#DarumadropOne-Regular");
+    font-size: 51px;
+    -unity-text-align: middle-center;
+    -unity-text-outline-width: 4px;
+    -unity-text-outline-color: rgb(0, 0, 0);
+    translate: 0 5px;
+    scale: 0.9 0.9;
+    transition-duration: 0.1s;
+    -unity-background-image-tint-color: rgb(255, 97, 97);
 }

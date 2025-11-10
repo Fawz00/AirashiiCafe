@@ -4,11 +4,19 @@ using UnityEngine.UIElements;
 public class UiHandler : MonoBehaviour
 {
     public UIDocument uiDocument => GetComponent<UIDocument>();
+    public PlayerData_SO playerData;
+
+
     private Button playButton;
     private Button quitButton;
 
     void Awake()
     {
+        if (playerData == null)
+        {
+            Debug.LogError("UiHandler: PlayerData_SO is not assigned in the inspector.");
+        }
+        
         playButton = uiDocument.rootVisualElement.Q<Button>("playButton");
         quitButton = uiDocument.rootVisualElement.Q<Button>("quitButton");
     }

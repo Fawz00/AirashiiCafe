@@ -1,34 +1,42 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    public Character_SO character;
+    public List<Character_SO> availableCharacters = new List<Character_SO>();
+    public Character_SO currentCharacter;
 
     public GameObject spawnedCharacter { get; private set; } = null;
 
     void Awake()
     {
-        if (character == null)
+        // If availableCharacters is not empty, select randomly from it
+        if (availableCharacters != null && availableCharacters.Count > 0)
         {
-            Debug.LogError("Character: No character data assigned!", this);
-            return;
+            int randomIndex = Random.Range(0, availableCharacters.Count);
+            currentCharacter = availableCharacters[randomIndex];
         }
+
         SpawnCharacter();
     }
 
     public void SpawnCharacter()
     {
-        if (character == null) return;
+        if (currentCharacter == null)
+        {
+            Debug.LogError("Character: No character data assigned!", this);
+            return;
+        }
 
         if (spawnedCharacter != null)
         {
             Destroy(spawnedCharacter);
         }
 
-        if (character.characterPrefab != null)
+        if (currentCharacter.characterPrefab != null)
         {
-            spawnedCharacter = Instantiate(character.characterPrefab, transform);
-            spawnedCharacter.name = character.name;
+            spawnedCharacter = Instantiate(currentCharacter.characterPrefab, transform);
+            spawnedCharacter.name = currentCharacter.name;
         }
         else
         {
@@ -37,7 +45,7 @@ public class Character : MonoBehaviour
     }
     public void SetCharacter(Character_SO newCharacter)
     {
-        character = newCharacter;
+        currentCharacter = newCharacter;
         SpawnCharacter();
     }
     public void SetCharacter(string newCharacter)
@@ -54,11 +62,11 @@ public class Character : MonoBehaviour
     }
     public string GetCharacterName()
     {
-        return character != null ? character.name : "Unknown";
+        return currentCharacter != null ? currentCharacter.name : "Unknown";
     }
     public Animator getAnimator()
     {
-        if (spawnedCharacter == null && character != null)
+        if (spawnedCharacter == null && currentCharacter != null)
         {
             SpawnCharacter();
         }

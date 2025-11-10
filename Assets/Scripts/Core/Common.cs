@@ -4,6 +4,7 @@ public class Common
 {
     public static string startupScene = "BOOTSTRAP";
     public static string gameScene = "Gameplay";
+    public static string mainMenuScene = "MainMenu";
 
     public enum PlayerControlType
     {
